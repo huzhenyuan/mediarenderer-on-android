@@ -2,7 +2,7 @@
 
     <string name="app_name">MediaRenderer</string>
     <string name="service_start">MediaRenderer service start to run</string>
-    <string name="dummy_content">FUN TV</string>
+    <string name="dummy_content">FUN TV MEDIA RENDERER</string>
     <string name="media_renderer_title">Funshion MediaRenderer</string>
     <string name="media_renderer_service_notification_id">mediarenderer_service_notification_id</string>
     <string name="media_renderer_service_finished">MediaRenderer service finished</string>

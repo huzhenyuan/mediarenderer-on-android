@@ -8,11 +8,11 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import com.fun.mediarenderer.activity.StartupActivity;
+import com.fun.mediarenderer.activity.MainActivity;
 
 public class UpnpApp extends Application {
 
-    private NotificationManager mNM;
+    private NotificationManager mNotificationManager;
 
     // pulsate every 1 second, indicating a relatively high degree of urgency
     private static final int NOTIFICATION_LED_ON_MS = 100;
@@ -26,7 +26,7 @@ public class UpnpApp extends Application {
         // important! this sax driver is necessary for cling stack
         System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
 
-        mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         initSingletons();
 
@@ -43,7 +43,7 @@ public class UpnpApp extends Application {
 
     public void showNotification(String content) {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this.getApplicationContext(), StartupActivity.class), 0);
+                new Intent(this.getApplicationContext(), MainActivity.class), 0);
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle(getText(R.string.media_renderer_title))
@@ -63,15 +63,14 @@ public class UpnpApp extends Application {
 
         CancelNotification();
 
-        // Send the notification.
-        // We use a layout id because it is a unique number. We use it later to
-        // cancel.
-        mNM.notify(R.string.media_renderer_service_notification_id, notification);
+        // Send the notification. We use a layout id because it is a unique
+        // number. We use it later to cancel.
+        mNotificationManager.notify(R.string.media_renderer_service_notification_id, notification);
 
     }
 
     public void CancelNotification() {
-        mNM.cancel(R.string.media_renderer_service_notification_id);
+        mNotificationManager.cancel(R.string.media_renderer_service_notification_id);
     }
 
 }

@@ -107,7 +107,7 @@ public class DefMediaPlayer extends Fragment
             Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
 
-        mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_videoview, container, false);
+        mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_render_view, container, false);
 
         imageView = (ImageView) mRootView.findViewById(R.id.myimageview);
         videoView = (VideoView) mRootView.findViewById(R.id.myvideoview);
