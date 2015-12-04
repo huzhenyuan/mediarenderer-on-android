@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
+import java.util.UUID;
 
 import org.fourthline.cling.android.AndroidUpnpService;
 import org.fourthline.cling.binding.LocalServiceBinder;
@@ -55,7 +56,7 @@ public class UpnpSingleton {
 
     public String customVar;
 
-    public final static UDN udn = UDN.uniqueSystemIdentifier("Fun MediaRenderer");
+    public final static UDN udn = new UDN(UUID.randomUUID());
     private AndroidUpnpService upnpService;
     private LocalDevice device;
     private DisplayHandler displayHandler;
@@ -270,15 +271,10 @@ public class UpnpSingleton {
         System.out.println("........length......" + imageInByte);
         ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
 
-        try {
-            return new Icon(
-                    "image/png",
-                    48, 48, 8,
-                    URI.create("icon.png"),
-                    bis);
-        } catch (IOException ex) {
-            throw new RuntimeException("Could not load icon", ex);
-        }
+        return new Icon(
+                "image/png",
+                48, 48, 8,
+                URI.create("icon.png"));
     }
 
     protected LocalService<DefAVTransportService> getAvTransportService() {

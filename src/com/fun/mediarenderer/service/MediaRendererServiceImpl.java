@@ -3,21 +3,20 @@ package com.fun.mediarenderer.service;
 import org.fourthline.cling.UpnpService;
 import org.fourthline.cling.android.AndroidUpnpServiceConfiguration;
 import org.fourthline.cling.android.AndroidUpnpServiceImpl;
-import org.fourthline.cling.android.AndroidWifiSwitchableRouter;
 import org.fourthline.cling.model.ModelUtil;
+
+import android.os.AsyncTask;
 
 import com.fun.mediarenderer.UpnpApp;
 import com.fun.mediarenderer.UpnpSingleton;
-
-import android.os.AsyncTask;
 
 public class MediaRendererServiceImpl extends AndroidUpnpServiceImpl {
 	
 	final static String TAG = "MediaRendererServiceImpl";
 	
 	@Override
-    protected AndroidUpnpServiceConfiguration createConfiguration(Object manager) {
-        return new AndroidUpnpServiceConfiguration(manager) {
+    protected AndroidUpnpServiceConfiguration createConfiguration() {
+        return new AndroidUpnpServiceConfiguration() {
 
         	/* This is optimization for Android device
         	 * 1.set registry maintenance interval time
@@ -65,9 +64,11 @@ public class MediaRendererServiceImpl extends AndroidUpnpServiceImpl {
 				
 			}}).run();*/
 		
-		if (!ModelUtil.ANDROID_EMULATOR && isListeningForConnectivityChanges()){
-	  	  	unregisterReceiver(((AndroidWifiSwitchableRouter) upnpService.getRouter()).getBroadcastReceiver());
-		}
+        // if (!ModelUtil.ANDROID_EMULATOR &&
+        // isListeningForConnectivityChanges()){
+        // unregisterReceiver(((AndroidWifiSwitchableRouter)
+        // upnpService.getRouter()).getBroadcastReceiver());
+        // }
 		
 		new Shutdown().execute(upnpService);
 		

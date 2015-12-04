@@ -24,29 +24,29 @@ public class MediaRendererStopped extends Stopped<AVTransport> {
     
 	
 	@Override
-	public Class<? extends AbstractState> next() {
+	public Class<? extends AbstractState<?>> next() {
 		return MediaRendererStopped.class;
 	}
 
 	@Override
-	public Class<? extends AbstractState> play(String speed) {
+	public Class<? extends AbstractState<?>> play(String speed) {
 		// It's easier to let this classes' onEntry() method do the work
         return MediaRendererPlaying.class;
 	}
 
 	@Override
-	public Class<? extends AbstractState> previous() {
+	public Class<? extends AbstractState<?>> previous() {
 		return MediaRendererStopped.class;
 	}
 
 	@Override
-	public Class<? extends AbstractState> seek(SeekMode unit, String target) {
+	public Class<? extends AbstractState<?>> seek(SeekMode unit, String target) {
 		// Implement seeking with the stream in stopped state!
         return MediaRendererStopped.class;
 	}
 
 	@Override
-	public Class<? extends AbstractState> setTransportURI(URI arg0, String arg1) {
+	public Class<? extends AbstractState<?>> setTransportURI(URI arg0, String arg1) {
 		// This operation can be triggered in any state, you should think
         // about how you'd want your player to react. If we are in Stopped
         // state nothing much will happen, except that you have to set
@@ -57,7 +57,7 @@ public class MediaRendererStopped extends Stopped<AVTransport> {
 	}
 
 	@Override
-	public Class<? extends AbstractState> stop() {
+	public Class<? extends AbstractState<?>> stop() {
 		/// Same here, if you are stopped already and someone calls STOP, well...
         return MediaRendererStopped.class;
 	}

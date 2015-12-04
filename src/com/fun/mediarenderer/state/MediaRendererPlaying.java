@@ -21,43 +21,43 @@ public class MediaRendererPlaying extends Playing<AVTransport> {
     }
 
 	@Override
-	public Class<? extends AbstractState> next() {
+	public Class<? extends AbstractState<?>> next() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Class<? extends AbstractState> pause() {
+	public Class<? extends AbstractState<?>> pause() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Class<? extends AbstractState> play(String arg0) {
+	public Class<? extends AbstractState<?>> play(String arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Class<? extends AbstractState> previous() {
+	public Class<? extends AbstractState<?>> previous() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Class<? extends AbstractState> seek(SeekMode arg0, String arg1) {
+	public Class<? extends AbstractState<?>> seek(SeekMode arg0, String arg1) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Class<? extends AbstractState> setTransportURI(URI arg0, String arg1) {
+	public Class<? extends AbstractState<?>> setTransportURI(URI arg0, String arg1) {
 		// Your choice of action here, and what the next state is going to be!
         return MediaRendererStopped.class;
 	}
 
 	@Override
-	public Class<? extends AbstractState> stop() {
+	public Class<? extends AbstractState<?>> stop() {
 		// Stop playing!
         return MediaRendererStopped.class;
 	}

@@ -2,11 +2,6 @@ package com.fun.mediarenderer.display;
 
 import com.fun.mediarenderer.upnp.DefMediaPlayer;
 
-/**
- * Decouples backend from displaying media, e.g. windowed or fullscreen.
- *
- * @author Christian Bauer
- */
 public interface DisplayHandler {
 	
 	public void onNoMedia(DefMediaPlayer player);
