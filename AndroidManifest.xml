@@ -1,48 +1,48 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.com.xinli.android.mediarenderer"
+    package="com.fun.mediarenderer"
     android:versionCode="1"
     android:versionName="0.1" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="15" />
-    
+        android:targetSdkVersion="14" />
+
     <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name="com.fun.mediarenderer.UpnpApp"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" 
-        android:allowBackup="true"
-        android:name="cn.com.xinli.android.mediarenderer.UpnpApp">
-        
-       <activity
-            android:name="cn.com.xinli.android.mediarenderer.activity.PlayerActivity"
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+        <activity
+            android:name="com.fun.mediarenderer.activity.PlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleInstance" >
         </activity>
         <activity
-            android:name="cn.com.xinli.android.mediarenderer.activity.StartupActivity"
+            android:name="com.fun.mediarenderer.activity.StartupActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Dialog" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name="cn.com.xinli.android.mediarenderer.service.NetworkStateBCR" >
+        <receiver android:name="com.fun.mediarenderer.service.NetworkStateBCR" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="start_backend_service" />
@@ -53,19 +53,17 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="cn.com.xinli.android.mediarenderer.service.BackendService" />
-        
-        <service android:name="cn.com.xinli.android.mediarenderer.service.MusicPlayerService" >
+        <service android:name="com.fun.mediarenderer.service.BackendService" />
+        <service android:name="com.fun.mediarenderer.service.MusicPlayerService" >
             <intent-filter>
-                <action android:name="cn.com.xinli.android.upnp_music_player" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.fun.upnp_music_player" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
-        
 
         <!-- Custom AndroidUpnpServiceImpl - see the source -->
-        <service android:name="cn.com.xinli.android.mediarenderer.service.MediaRendererServiceImpl" />
-        
+        <service android:name="com.fun.mediarenderer.service.MediaRendererServiceImpl" />
     </application>
 
 </manifest>
